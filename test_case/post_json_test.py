@@ -36,6 +36,7 @@ class PostJsonTest(unittest.TestCase):
         resp = base.get_response(self.url, Method, **DataALL)
         print(resp)
         name = resp.get('data')
+
         print(name)
         self.assertIsInstance(Expectedresult,str)
 
