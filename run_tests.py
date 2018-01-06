@@ -14,8 +14,8 @@ from email.utils import formataddr
 
 
 def send_email(filename):
-    mail_host='smtp.163.com'
-    mail_user=mail.mail_user   #邮箱名：18895356776@163.com
+    mail_host='smtp.qq.com'
+    mail_user=mail.mail_user   #邮箱名：972150511@qq.com
     mail_pass=mail.mail_pass   #密码
 
     sender=mail.sender  #发送邮件的账号
@@ -37,8 +37,8 @@ def send_email(filename):
     message['To']=','.join(receivers)
     message['Subject']=Header('接口自动化测试报告','utf-8')
 
-    smtp=smtplib.SMTP()
-    smtp.connect(mail_host,25)
+    smtp=smtplib.SMTP_SSL(mail_host,465)
+    #smtp.connect(mail_host)
     smtp.login(mail_user,mail_pass)
     smtp.sendmail(sender,receivers,message.as_string())
     smtp.quit()
