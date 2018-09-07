@@ -2,5 +2,6 @@
 #coding:utf-8
 
 mail_user='972150511@qq.com'
-mail_pass='ljfshkibwmwhbaic'
+#邮箱授权码
+mail_pass='qolejzubwdmcbfgj'
 sender = '972150511@qq.com'

@@ -175,6 +175,7 @@ class Template_mixin(object):
     0: 'pass',
     1: 'fail',
     2: 'error',
+    # 3: 'skip',
     }
 
     DEFAULT_TITLE = 'Unit Test Report'
@@ -216,7 +217,8 @@ function showCase(level) {
             }
             else {
                 tr.className = 'hiddenRow';
-            }
+            }   
+        
         }
     }
 }
@@ -349,7 +351,7 @@ a.popup_link:hover {
     font-family: "Lucida Console", "Courier New", Courier, monospace;
     text-align: left;
     font-size: 8pt;
-    width: 500px;
+    /*width: 500px;*/
 }
 
 }
@@ -429,6 +431,8 @@ a.popup_link:hover {
 <col align='right' />
 </colgroup>
 <tr id='header_row'>
+    <td>CaseId</td>
+    <td>Describe</td>
     <td>Test Group/Test case</td>
     <td>Count</td>
     <td>Pass</td>
@@ -438,6 +442,8 @@ a.popup_link:hover {
 </tr>
 %(test_list)s
 <tr id='total_row'>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
     <td>Total</td>
     <td>%(count)s</td>
     <td>%(Pass)s</td>
@@ -450,6 +456,8 @@ a.popup_link:hover {
 
     REPORT_CLASS_TMPL = r"""
 <tr class='%(style)s'>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
     <td>%(desc)s</td>
     <td>%(count)s</td>
     <td>%(Pass)s</td>
@@ -457,11 +465,13 @@ a.popup_link:hover {
     <td>%(error)s</td>
     <td><a href="javascript:showClassDetail('%(cid)s',%(count)s)">Detail</a></td>
 </tr>
-""" # variables: (style, desc, count, Pass, fail, error, cid)
+""" # variables: (style, desc, count, Pass, fail, skip,error, cid)
 
 
     REPORT_TEST_WITH_OUTPUT_TMPL = r"""
 <tr id='%(tid)s' class='%(Class)s'>
+    <td class='%(style)s'><div class='testcase'>%(caseid)s</div></td>
+    <td class='%(style)s'><div class='testcase'>%(describe)s</div></td>
     <td class='%(style)s'><div class='testcase'>%(desc)s</div></td>
     <td colspan='5' align='center'>
 
@@ -519,6 +529,7 @@ class _TestResult(TestResult):
         self.stdout0 = None
         self.stderr0 = None
         self.success_count = 0
+        # self.skipped_count = 0  # add skipped_count
         self.failure_count = 0
         self.error_count = 0
         self.verbosity = verbosity
@@ -589,6 +600,18 @@ class _TestResult(TestResult):
             sys.stderr.write('\n')
         else:
             sys.stderr.write('E')
+
+    # def addSkip(self, test, reason):
+    #     self.skipped_count += 1
+    #     TestResult.addSkip(self, test, reason)
+    #     output = self.complete_output()
+    #     self.result.append((3, test, '', reason))
+    #     if self.verbosity > 1:
+    #         sys.stderr.write('skip ')
+    #         sys.stderr.write(str(test))
+    #         sys.stderr.write('\n')
+    #     else:
+    #         sys.stderr.write('s')
 
     def addFailure(self, test, err):
         self.failure_count += 1
@@ -763,7 +786,7 @@ class HTMLTestRunner(Template_mixin):
         if isinstance(o,str):
             # TODO: some problem with 'string_escape': it escape \n and mess up formating
             # uo = unicode(o.encode('string_escape'))
-            uo = e
+            uo = o
         else:
             uo = o
         if isinstance(e,str):
@@ -778,6 +801,13 @@ class HTMLTestRunner(Template_mixin):
             #output = saxutils.escape(uo+ue),
             output = saxutils.escape(str(uo) + str(ue)),
         )
+        s = str(uo) + str(ue)  # 此处修改开始
+        if s.count('begin') != 0:  # 判断日志中是否有图片
+            caseid = s[s.find('idbegin') + 7:s.find('idend')]
+            describe = s[s.find('smbegin') + 7:s.find('smend')]
+        else:
+            caseid = ' '
+            describe = ' '  # 此处修改结束
 
         row = tmpl % dict(
             tid = tid,
@@ -785,6 +815,8 @@ class HTMLTestRunner(Template_mixin):
             style = n == 2 and 'errorCase' or (n == 1 and 'failCase' or 'none'),
             desc = desc,
             script = script,
+            caseid = caseid,
+            describe = describe,
             status = self.STATUS[n],
         )
         rows.append(row)

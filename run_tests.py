@@ -12,7 +12,7 @@ import smtplib
 from public import mail
 from email.utils import formataddr
 
-
+#通过smtp协议进行发送电子邮件
 def send_email(filename):
     mail_host='smtp.qq.com'
     mail_user=mail.mail_user   #邮箱名：972150511@qq.com
@@ -43,9 +43,10 @@ def send_email(filename):
     smtp.sendmail(sender,receivers,message.as_string())
     smtp.quit()
 
+#筛选最新生成的报告文件
 def report(testreport):#查找最新的测试报告
     lists = os.listdir(testreport) #返回指定的文件夹包含的文件或文件夹的名字的列表
-    lists.sort(key=lambda fn: os.path.getatime(testreport+"\\" + fn))#通过sort()方法重新按时间对目录下的文件进行排序
+    lists.sort(key=lambda fn: os.path.getatime(testreport+'\\' + fn))#通过sort()方法重新按时间对目录下的文件进行排序
     filename = os.path.join(testreport,lists[-1])#lsit[-1]取最新生成的文件或文件夹
     print(filename)
     return filename
@@ -61,8 +62,8 @@ if __name__ == '__main__':
     filename = './report/'+now+'_result.html'
     fp = open(filename,'wb')
     runner = HTMLTestRunner(stream=fp,
-                            title='huangaihua interface——test',
-                            description='The results are following:')
+                            title='接口测试报告',
+                            description='测试结果详情：')
 
     runner.run(discover)
     fp.close()

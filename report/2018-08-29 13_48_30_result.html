@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>huangaihua interface——test</title>
+    <title>接口测试报告</title>
     <meta name="generator" content="HTMLTestRunner 0.8.2"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     
@@ -50,7 +50,7 @@ a.popup_link:hover {
     font-family: "Lucida Console", "Courier New", Courier, monospace;
     text-align: left;
     font-size: 8pt;
-    width: 500px;
+    /*width: 500px;*/
 }
 
 }
@@ -115,7 +115,8 @@ function showCase(level) {
             }
             else {
                 tr.className = 'hiddenRow';
-            }
+            }   
+        
         }
     }
 }
@@ -188,12 +189,12 @@ function showOutput(id, name) {
 --></script>
 
 <div class='heading'>
-<h1>huangaihua interface——test</h1>
-<p class='attribute'><strong>Start Time:</strong> 2017-12-11 23:32:04</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:01.554336</p>
-<p class='attribute'><strong>Status:</strong> Pass 2 Error 1</p>
+<h1>接口测试报告</h1>
+<p class='attribute'><strong>Start Time:</strong> 2018-08-29 13:48:30</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:00.284203</p>
+<p class='attribute'><strong>Status:</strong> Pass 2 Failure 1</p>
 
-<p class='description'>The results are following:</p>
+<p class='description'>测试结果详情：</p>
 </div>
 
 
@@ -213,6 +214,8 @@ function showOutput(id, name) {
 <col align='right' />
 </colgroup>
 <tr id='header_row'>
+    <td>CaseId</td>
+    <td>Describe</td>
     <td>Test Group/Test case</td>
     <td>Count</td>
     <td>Pass</td>
@@ -221,22 +224,26 @@ function showOutput(id, name) {
     <td>View</td>
 </tr>
 
-<tr class='errorClass'>
-    <td>get_params_headers_test.GetParamsHeadersTest</td>
+<tr class='failClass'>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>test1_test.InterfaceTest</td>
+    <td>3</td>
+    <td>2</td>
     <td>1</td>
     <td>0</td>
-    <td>0</td>
-    <td>1</td>
-    <td><a href="javascript:showClassDetail('c1',1)">Detail</a></td>
+    <td><a href="javascript:showClassDetail('c1',3)">Detail</a></td>
 </tr>
 
 <tr id='ft1.1' class='none'>
-    <td class='errorCase'><div class='testcase'>test_params_headers</div></td>
+    <td class='failCase'><div class='testcase'>enroll_06</div></td>
+    <td class='failCase'><div class='testcase'>华泰中台登录</div></td>
+    <td class='failCase'><div class='testcase'>test_interface_6: 接口测试</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
-        error</a>
+        fail</a>
 
     <div id='div_ft1.1' class="popup_window">
         <div style='text-align: right; color:red;cursor:pointer'>
@@ -245,14 +252,15 @@ function showOutput(id, name) {
         </div>
         <pre>
         
-ft1.1: Traceback (most recent call last):
-  File "D:\Interface_Test_Training\test_case\get_params_headers_test.py", line 22, in test_params_headers
-    r = requests.get(url,params=params,headers=headers)
-NameError: name 'url' is not defined
+ft1.1: idbeginenroll_06idend
+smbegin华泰中台登录smend
+{'retmsg': '接口无权限访问或不存在', 'retcode': '404'}
 Traceback (most recent call last):
-  File "D:\Interface_Test_Training\test_case\get_params_headers_test.py", line 22, in test_params_headers
-    r = requests.get(url,params=params,headers=headers)
-NameError: name 'url' is not defined
+  File "C:\Python35\lib\site-packages\ddt.py", line 139, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\Interface_Test\test_case\test1_test.py", line 96, in test_interface
+    self.assertEqual(self.a,True)
+AssertionError: False != True
 
 
         </pre>
@@ -262,31 +270,27 @@ NameError: name 'url' is not defined
     </td>
 </tr>
 
-<tr class='passClass'>
-    <td>get_params_test.GetParams: GetParams测试</td>
-    <td>2</td>
-    <td>2</td>
-    <td>0</td>
-    <td>0</td>
-    <td><a href="javascript:showClassDetail('c2',2)">Detail</a></td>
-</tr>
-
-<tr id='pt2.1' class='hiddenRow'>
-    <td class='none'><div class='testcase'>test_get_params: test_get_params1测试</div></td>
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>enroll_07</div></td>
+    <td class='none'><div class='testcase'>博时中台登录接口</div></td>
+    <td class='none'><div class='testcase'>test_interface_7: 接口测试</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
         pass</a>
 
-    <div id='div_pt2.1' class="popup_window">
+    <div id='div_pt1.2' class="popup_window">
         <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.1').style.display = 'none' " >
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
            [x]</a>
         </div>
         <pre>
         
-pt2.1: 
+pt1.2: idbeginenroll_07idend
+smbegin博时中台登录接口smend
+{'retmsg': '中台管理系统登录成功', 'retdata': {'mobileno': '13530023822', 'username': 'huafeng', 'email': 'hehuafeng@szltech.com', 'realname': '何华锋', 'roletype': '0'}, 'retcode': '0000'}
+
 
         </pre>
     </div>
@@ -295,17 +299,43 @@ pt2.1:
     </td>
 </tr>
 
-<tr id='pt2.2' class='hiddenRow'>
-    <td class='none'><div class='testcase'>test_get_params2: test_get_params2测试</div></td>
-    <td colspan='5' align='center'>pass</td>
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>enroll_08</div></td>
+    <td class='none'><div class='testcase'>博时中台基金点赞接口</div></td>
+    <td class='none'><div class='testcase'>test_interface_8: 接口测试</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: idbeginenroll_08idend
+smbegin博时中台基金点赞接口smend
+{'retmsg': '修改基金经理点赞基数成功', 'retdata': {}, 'retcode': '0000'}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
 </tr>
 
 <tr id='total_row'>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
     <td>Total</td>
     <td>3</td>
     <td>2</td>
-    <td>0</td>
     <td>1</td>
+    <td>0</td>
     <td>&nbsp;</td>
 </tr>
 </table>

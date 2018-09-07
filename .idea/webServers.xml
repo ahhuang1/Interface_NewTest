@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1c26457b-86a1-4b65-81db-ce540e261630" name="Interface_Test_Training" url="https://github.com/ahhuang1/Interface_Test_Training">
+        <fileTransfer host="https://github.com/ahhuang1/Interface_Test_Training" port="21" accessType="FTPS">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

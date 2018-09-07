@@ -5,7 +5,7 @@ import sys
 import unittest
 from unittest import mock
 sys.path.append('./mock_train')
-import modular
+from test_case.mock_train import modular
 
 
 '''1.mock一个对象'''
