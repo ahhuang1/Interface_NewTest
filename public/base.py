@@ -26,15 +26,31 @@ def get_mock_status():
     return mock_status
 
 #比较字典
+# def dict_bijiao(dict1,dict2):
+#     for key,value in dict1.items():
+#         try:
+#             if key in dict2 and dict2.get(key) == value:
+#                 pass
+#             else:
+#                 return False
+#                 break
+#         except:
+#             return False
+#     return True
+
 def dict_bijiao(dict1,dict2):
     for key,value in dict1.items():
-        try:
-            if key in dict2 and dict2.get(key) == value:
-                pass
+        if key in dict2.keys():
+            if isinstance(value,dict):
+                # dict_bijiao(value,dict2.get(key))
+                if not dict_bijiao(value,dict2.get(key)):
+                    return False
             else:
-                return False
-                break
-        except:
+                if dict2.get(key) == value:
+                    pass
+                else:
+                    return False
+        else:
             return False
     return True
 
